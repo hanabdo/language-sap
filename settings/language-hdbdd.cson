@@ -1,0 +1,23 @@
+'.source.hdbdd':
+  'editor':
+    'increaseIndentPattern': '(?x)
+       ^ .* \\{ [^}"\']* $
+      |^ .* \\( [^\\)"\']* $
+      |^ \\s* \\{ \\} $
+      '
+    'decreaseIndentPattern': '(?x)
+       ^ \\s* (\\s* /[*] .* [*]/ \\s*)* \\}
+      |^ \\s* (\\s* /[*] .* [*]/ \\s*)* \\)
+      '
+    'tabLength': 2
+    'softTabs': true
+    'preferredLineLength': 99
+  'bracket-matcher':
+    'autocompleteCharacters': [
+      '()'
+      '[]'
+      '{}'
+      '<>'
+      '""'
+      '``'
+    ]

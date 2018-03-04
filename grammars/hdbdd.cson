@@ -1,0 +1,77 @@
+scopeName: 'source.hdbdd'
+name: 'HDBDD'
+fileTypes: [
+  'hdbdd'
+]
+repository: {
+  block_comment: {
+    comment: 'Block comment'
+    name: 'comment.block.hdbdd'
+    begin: '/\\*'
+    end: '\\*/'
+    patterns: [
+      { include: '#block_comment' }
+    ]
+  }
+  line_comment: {
+    comment: 'Single-line comment'
+    name: 'comment.line.double-slash.hdbdd'
+    begin: '//'
+    end: '$'
+  }
+
+  annotations: {
+    # TODO add @ symbol support
+    comment: 'Annotations'
+    name: 'support.function.hdbdd'
+    match: '\\b(Catalog|nokey|Schema|GenerateTableType|SearchIndex|WithStructuredPrivilegeCheck)\\b'
+  }
+  annotation_parameters: {
+    # TODO add # symbol support
+    comment: 'Parameters'
+    name: 'support.function.hdbdd'
+    match: '\\b(ASC|COLUMN|DESC|GLOBAL_TEMPORARY|ROW)\\b'
+  }
+  data_types: {
+    comment: 'Data types'
+    name: 'storage.type.hdbdd'
+    match: '\\b(Binary|BinaryFloat|Decimal|DecimalFloat|Integer|Integer64|LargeBinary|LargeString|LocalDate|LoclTime|String|UTCDateTime|UTCTimestamp)\\b'
+  }
+  keywords: {
+    # TODO add as
+    comment: 'Reserved keyword'
+    name: 'keyword.operator.misc.hdbdd'
+    match: '\\b(accesspolicy|annotation|aspect|const|context|define|entity|key|namespace|role|type|using|view)\\b'
+  }
+
+  string_literal: {
+    comment: 'Double-quote string literal'
+    name: 'string.quoted.double.hdbdd'
+    begin: 'b?"'
+    end: '"'
+  }
+}
+patterns: [
+    # Comments
+  { include: '#block_comment' }
+  { include: '#line_comment' }
+    # Language
+  { include: '#data_types' }
+  { include: '#keywords' }
+  { include: '#annotations' }
+  { include: '#annotation_parameters' }
+  { include: '#string_literal' }
+    # Blocks
+  # { @WIP
+  #   comment: 'Context block'
+  #   begin: 'contrext\\s+[A-Za-z][A-Za-z0-9_]+'
+  #   end: ';'
+  #   patterns: [
+  #     { 'include': '#annotations' }
+  #     { 'include': '#data_types' }
+  #     # { 'include': '#keywords' }
+  #     { 'include': '#string_literal' }
+  #     { 'include': '$self' }
+  #   ]
+  # }
+]

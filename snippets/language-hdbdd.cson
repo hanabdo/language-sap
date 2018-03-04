@@ -1,0 +1,18 @@
+'.source.hdbdd':
+  'context':
+    'prefix': 'context'
+    'body': '''
+      context ${1:CONTEXT_NAME} {
+      \t${2:type tID: Integer;}
+      }
+    '''
+  'entity':
+    'prefix': 'entity'
+    'body': '''
+      entity ${1:ENTITY_NAME} {
+      \t${2:key "ID" : tID;}
+      }
+    '''
+  'Decimal':
+    'prefix': 'Decimal'
+    'body': 'Decimal(${1:precision}, ${2:scale})'
