@@ -1,12 +1,12 @@
 {
   "name": "language-sap",
   "version": "0.0.0",
-  "description": "A short description of your language package",
+  "description": "Syntax support for different SAP source files",
   "keywords": [
     "language",
     "grammar"
   ],
-  "repository": "https://github.com/atom/language-sap",
+  "repository": "https://github.com/krasnobaev/language-sap",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
