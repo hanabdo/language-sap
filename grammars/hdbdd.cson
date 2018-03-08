@@ -3,6 +3,8 @@ name: 'HDBDD'
 fileTypes: [
   'hdbdd'
 ]
+foldingStartMarker: '\{.*$';
+foldingStopMarker: '.*\}';
 repository: {
   block_comment: {
     comment: 'Block comment'
