@@ -3,3 +3,47 @@ name: 'HDBSEQUENCE'
 fileTypes: [
   'hdbsequence'
 ]
+repository:
+  line_comment:
+    comment: 'Single-line comment'
+    name: 'comment.line.double-slash.hdbsequence'
+    begin: '//'
+    end: '$'
+    patterns:
+      include: '#sql'
+  keywords:
+    comment: 'Reserved keyword'
+    name: 'keyword.operator.misc.hdbsequence'
+    match: '\\b(cycles|depends_on_table|increment_by|minvalue|schema|start_with)\\b'
+  # separator:
+  #   captures:
+  #     1:
+  #       name: 'keyword.other.definition.hdbsequence'
+  #     2:
+  #       name: 'punctuation.separator.key-value.hdbsequence'
+  #   match: '^([\\[\\][\\s*]a-zA-Z0-9_.-]+)\\s*(=)'
+  string_value:
+    begin: '="'
+    beginCaptures:
+      0:
+        name: 'punctuation.definition.string.begin.hdbsequence'
+    end: '[!^\\"](?!.*\")(;)$'
+    endCaptures:
+      0:
+        name: 'punctuation.definition.string.end.hdbsequence'
+      1:
+        name: 'punctuation.terminator.statement.hdbsequence'
+  string_literal:
+    comment: 'Double-quote string literal'
+    name: 'string.quoted.double.hdbsequence'
+    begin: 'b?"'
+    end: '"'
+
+patterns: [
+  { include: '#comments' }
+  { include: '#line_comment' }
+  { include: '#keywords' }
+  # { include: '#separator' }
+  { include: '#string_value' }
+  { include: '#string_literal' }
+]
