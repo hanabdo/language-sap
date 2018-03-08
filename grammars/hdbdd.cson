@@ -24,7 +24,7 @@ repository: {
     # TODO add @ symbol support
     comment: 'Annotations'
     name: 'support.function.hdbdd'
-    match: '\\b(Catalog|nokey|Schema|GenerateTableType|SearchIndex|WithStructuredPrivilegeCheck)\\b'
+    match: '@((nokey|WithStructuredPrivilegeCheck)|((Catalog.index|Catalog.tableType|Schema|GenerateTableType|SearchIndex.text|SearchIndex.fuzzy):))'
   }
   annotation_parameters: {
     # TODO add # symbol support
@@ -35,13 +35,13 @@ repository: {
   data_types: {
     comment: 'Data types'
     name: 'storage.type.hdbdd'
-    match: '\\b(Binary|BinaryFloat|Decimal|DecimalFloat|Integer|Integer64|LargeBinary|LargeString|LocalDate|LoclTime|String|UTCDateTime|UTCTimestamp)\\b'
+    match: '\\b(Binary|BinaryFloat|Boolean|Decimal|DecimalFloat|Integer|Integer64|LargeBinary|LargeString|LocalDate|LocalTime|String|UTCDateTime|UTCTimestamp)\\b'
   }
   keywords: {
     # TODO add as
     comment: 'Reserved keyword'
     name: 'keyword.operator.misc.hdbdd'
-    match: '\\b(accesspolicy|annotation|aspect|const|context|define|entity|key|namespace|role|type|using|view)\\b'
+    match: '\\b(annotation|aspect|const|context|define|entity|key|namespace|role|type|using|view)\\b'
   }
 
   string_literal: {
