@@ -2,6 +2,10 @@
 
 WIP:
 
-* .hdbdd
+* .hdbdd (XS classic)
 * .hdbsequence
 * .hdbview
+
+Roadmap:
+
+* .hdbcds (XS Advanced)

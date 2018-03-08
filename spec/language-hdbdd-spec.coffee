@@ -1,16 +1,14 @@
-# If you want an example of language specs, check out:
-# https://github.com/atom/language-javascript/blob/master/spec/javascript-spec.coffee
+grammarTest = require 'atom-grammar-test'
 
-describe "HDBDD grammar", ->
+describe 'HDBDD grammar', ->
   grammar = null
 
   beforeEach ->
     waitsForPromise ->
-      atom.packages.activatePackage("language-sap")
-
+      atom.packages.activatePackage 'language-sap'
     runs ->
-      grammar = atom.syntax.grammarForScopeName("source.hdbdd")
+      grammar = atom.grammars.grammarForScopeName 'source.hdbdd'
 
-  it "parses the grammar", ->
+  it 'parses the grammar', ->
     expect(grammar).toBeTruthy()
-    expect(grammar.scopeName).toBe "source.hdbdd"
+    expect(grammar.scopeName).toBe 'source.hdbdd'

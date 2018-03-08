@@ -1,0 +1,168 @@
+// SYNTAX TEST "source.hdbdd"
+
+namespace package.subpackage;
+// <- keyword.operator.misc
+//        ^^^^^^^^^^^^^^^^^^ entity.name.tag
+
+using bookstore.data::BOOKS.SUPPORT.SESSIONS_GLOBAL as SESSIONS_GLOBAL;
+// <- keyword.operator.misc
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.name.tag
+//                                                  ^^ meta.type-signature variable.other.generic-type
+//                                                     ^^^^^^^^^^^^^^^ entity.name.tag
+
+@Schema: 'BOOKS'
+// <- support.function
+//       ^^^^^^^ entity.name.tag
+context PRODUCTS {
+  // <- keyword.operator.misc
+  //    ^^^^^^^^ entity.name.tag
+
+  type ProductId: Integer;
+  // <- keyword.operator.misc
+  //   ^^^^^^^^^ TODO USER-defined datatype
+  //   ^^^^^^^^^ entity.name.tag
+  //              ^^^^^^^ meta.type-signature entity.name.type storage.type
+  type Title: String(20);
+  // <- keyword.operator.misc
+  //   ^^^^^ entity.name.tag
+  //          ^^^^^^ meta.type-signature entity.name.type storage.type
+
+  @Catalog.tableType: #COLUMN
+  // <- support.function
+  //                  ^^^^^^^ TODO
+  @Catalog.index: [ { name : 'MYINDEX1', unique : true, order : #DESC, elementNames : ['ISBN'] } ]
+  // <- support.function
+  //              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ TODO
+  entity BOOK {
+    // <- keyword.operator.misc
+    //   ^^^^ entity.name.tag
+    key Author: ProductId;
+    // <- keyword.operator.misc
+    //  ^^^^^^ entity.name.tag
+    //          ^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    key BookTitle: Title;
+    // <- keyword.operator.misc
+    //  ^^^^^^^^^ entity.name.tag
+    //             ^^^^^ meta.type-signature entity.name.type storage.type
+    ISBN: Integer not null;
+    // <- entity.name.tag
+    //    ^^^^^^^ meta.type-signature entity.name.type storage.type
+    //            ^^^^^^^^ TODO
+    Publisher: String(100);
+    // <- entity.name.tag
+    //         ^^^^^^ meta.type-signature entity.name.type storage.type
+    // aKPP: Association[*] to ul.KPP on aKPP.COMMON_ID = ID;
+    // TODO
+  };
+
+  @Catalog.tableType: #ROW
+  // <- support.function
+  //                  ^^^^ TODO
+  @nokey
+  // <- support.function
+  entity NativeHanaTypes {
+    // <- keyword.operator.misc
+    //   ^^^^^^^^^^^^^^^ entity.name.tag
+    a: hana.ALPHANUM(10);
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    b: hana.SMALLINT;
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    c: hana.TINYINT;
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    d: hana.SMALLDECIMAL;
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    e: hana.REAL;
+    // <- entity.name.tag
+    // ^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    h: hana.VARCHAR(10);
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    i: hana.CLOB;
+    // <- entity.name.tag
+    // ^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    j: hana.BINARY(10);
+    // <- entity.name.tag
+    // ^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    k: hana.ST_POINT;
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    l: hana.ST_GEOMETRY;
+    // <- entity.name.tag
+    // ^^^^^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+  };
+
+  @GenerateTableType: false
+  // <- support.function
+  //                  ^^^^^ TODO
+  Type MyType1 {
+    // <- entity.name.tag
+    // ^^^^^^^ TODO USER-defined datatype
+    // ^^^^^^^ entity.name.tag
+    @SearchIndex.text: { enabled: true }
+    // <- support.function
+    //                 ^^^^^^^^^^^^^^^^^ TODO
+    field01: String
+    // <- entity.name.tag
+    //       ^^^^^^ meta.type-signature entity.name.type storage.type
+    @SearchIndex.fuzzy: { enabled: true }
+    // <- support.function
+    //                  ^^^^^^^^^^^^^^^^^ TODO
+    field02: LargeString
+    // <- entity.name.tag
+    //       ^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field03: Binary
+    // <- entity.name.tag
+    //       ^^^^^^ meta.type-signature entity.name.type storage.type
+    field04: LargeBinary
+    // <- entity.name.tag
+    //       ^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field05: Integer
+    // <- entity.name.tag
+    //       ^^^^^^^ meta.type-signature entity.name.type storage.type
+    field06: Integer64
+    // <- entity.name.tag
+    //       ^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field07: Decimal
+    // <- entity.name.tag
+    //       ^^^^^^^ meta.type-signature entity.name.type storage.type
+    field08: DecimalFloat
+    // <- entity.name.tag
+    //       ^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field09: BinaryFloat
+    // <- entity.name.tag
+    //       ^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field10: LocalDate
+    // <- entity.name.tag
+    //       ^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field11: LocalTime
+    // <- entity.name.tag
+    //       ^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field12: UTCDateTime
+    // <- entity.name.tag
+    //       ^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field13: UTCTimestamp
+    // <- entity.name.tag
+    //       ^^^^^^^^^^^^ meta.type-signature entity.name.type storage.type
+    field14: Boolean
+    // <- entity.name.tag
+    //       ^^^^^^^ meta.type-signature entity.name.type storage.type
+  };
+
+  @WithStructuredPrivilegeCheck
+  // <- support.function
+  view MyView as select from Foo {
+    // <- keyword.operator.misc
+    // ^^^^^^ entity.name.tag
+    //        ^^ meta.type-signature variable.other.generic-type
+    //           ^^^^^^^^^^^^^^^ TODO SQL injections support
+    <select_list>
+    // <- TODO SQL injections support
+  } <where_groupBy_Having_OrderBy>;
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ TODO SQL injections support
+
+};
+// >> =source.hdbdd
