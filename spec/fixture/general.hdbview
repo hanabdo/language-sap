@@ -1,0 +1,16 @@
+schema="SOMESCHEMA1";
+query="
+SELECT alias1.\"ID\",
+       alias2.SOME_PROP1 AS \"columnAlias\",
+       outputParams.\"outputParams\",
+       CASE
+           WHEN alias2.SOME_PROP1 IS NULL THEN 0
+           ELSE 1
+       END AS \"aliasOfSomeProp\"
+FROM \"SOMESCHEMA1\".\"SUBSCHEMA1::PACKAGE2.TABLE1\" AS alias1
+LEFT JOIN \"SOMESCHEMA1\".\"SUBSCHEMA1::PACKAGE2.TABLE2\" AS alias2 ON alias1.\"ID\" = alias2.\"ID\"
+";
+depends_on=[
+  "SOMESCHEMA1.SUBCHEMA1::PACKAGE2.TABLE1",
+  "SOMESCHEMA2::PACKAGE2.SUBPACKAGE1.TABLE2"
+];

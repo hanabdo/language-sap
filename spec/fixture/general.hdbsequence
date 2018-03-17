@@ -1,0 +1,9 @@
+schema= "SCHEMA1";
+increment_by = 1;      // somecomment
+start_with = 1;
+minvalue =1;
+cycles= false;
+
+reset_by="SELECT IFNULL(MAX(ID), 0) + 1 FROM \"SCHEMA1\".\"SPACE1::PACKAGE1.TABLE1\" ";
+
+depends_on_table = "SPACE1::PACKAGE1.TABLE1";
