@@ -13,6 +13,12 @@ repository:
     comment: 'Reserved keyword'
     name: 'keyword.operator.misc.hdbsequence'
     match: '\\b(cycles|depends_on_table|increment_by|minvalue|reset_by|schema|start_with)\\b'
+  boolean:
+    name: 'constant.numeric.hdbsequence'
+    match: '\\b(true|false)\\b'
+  numeric:
+    name: 'constant.numeric.hdbsequence'
+    match: '\\b(-)?[0-9.]+\\b'
   string_value:
     begin: '(=\s*)(")'
     beginCaptures:
@@ -36,6 +42,9 @@ repository:
 patterns: [
   { include: '#line_comment' }
   { include: '#keywords' }
+    #Constants
+  { include: '#boolean' }
+  { include: '#numeric' }
   { include: '#string_value' }
   { include: '#string_literal' }
 ]

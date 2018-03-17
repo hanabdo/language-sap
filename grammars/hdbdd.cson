@@ -45,7 +45,12 @@ repository: {
     name: 'keyword.operator.misc.hdbdd'
     match: '\\b(annotation|aspect|const|context|define|entity|key|namespace|role|type|using|view)\\b'
   }
-
+  boolean:
+    name: 'constant.numeric.hdbdd'
+    match: '\\b(true|false)\\b'
+  numeric:
+    name: 'constant.numeric.hdbdd'
+    match: '\\b(-)?[0-9.]+\\b'
   string_literal: {
     comment: 'Double-quote string literal'
     name: 'string.quoted.double.hdbdd'
@@ -62,6 +67,9 @@ patterns: [
   { include: '#keywords' }
   { include: '#annotations' }
   { include: '#annotation_parameters' }
+    # Constants
+  { include: '#boolean' }
+  { include: '#numeric' }
   { include: '#string_literal' }
     # Blocks
   # { @WIP

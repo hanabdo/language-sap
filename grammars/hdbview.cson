@@ -36,6 +36,7 @@ repository:
 patterns: [
   { include: '#line_comment' }
   { include: '#keywords' }
+    #Constants
   { include: '#string_value' }
   { include: '#string_literal' }
 ]
