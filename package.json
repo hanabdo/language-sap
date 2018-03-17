@@ -1,6 +1,6 @@
 {
   "name": "language-sap",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Syntax support for different SAP source files",
   "keywords": [
     "language",
