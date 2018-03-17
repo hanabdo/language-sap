@@ -1,0 +1,3 @@
+[submodule "language-sap-sublime"]
+	path = language-sap-sublime
+	url = git@github.com:krasnobaev/language-sap-sublime.git
